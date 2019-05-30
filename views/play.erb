@@ -1,3 +1,7 @@
 <h1><%= @game.player_1.name %> vs <%= @game.player_2.name %></h1>
 <h2><%= @game.player_2.name %> has <%=@game.player_2.points %> hit points.</h2>
+<h2><%= @game.player_1.name %> has <%=@game.player_1.points %> hit points.</h2>
+
+<h3><%= @game.current_turn.name %>'s turn</h3>
+
 <a href="/attack" id='Hit player 2'>Attack</a>
