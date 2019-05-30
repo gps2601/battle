@@ -4,8 +4,8 @@ class Game
     @current_turn = player_one
   end
 
-  def attack(player)
-    player_2().receive_damage
+  def attack
+    not_turn.receive_damage
   end
 
   def player_1
@@ -22,5 +22,9 @@ class Game
 
   def switch_turn
     @current_turn == player_1 ? @current_turn = player_2 : @current_turn = player_1
+  end
+
+  def not_turn
+    current_turn == player_1() ? player_2() : player_1()
   end
 end

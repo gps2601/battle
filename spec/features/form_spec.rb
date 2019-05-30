@@ -17,20 +17,39 @@ feature 'view hit points' do
   end
 end
 
-feature 'attack player 2' do
+feature 'attack' do
   scenario 'can get confirmation'  do
     sign_in_and_play
-    click_link('Hit player 2')
+    click_link('attack')
 
     expect(page).to have_content('Peter hit Paul')
   end
 
-  scenario 'can reduce hit points'  do
+  scenario 'can get confirmation for second player'  do
     sign_in_and_play
-    click_link('Hit player 2')
+    click_link('attack')
+    click_link('OK')
+    click_link('attack')
+
+    expect(page).to have_content('Paul hit Peter')
+  end
+
+  scenario 'can reduce hit points of player 2'  do
+    sign_in_and_play
+    click_link('attack')
     click_link('OK')
 
     expect(page).to have_content('Paul has 90 hit points.')
+  end
+
+  scenario 'can reduce hit points of player 1'  do
+    sign_in_and_play
+    click_link('attack')
+    click_link('OK')
+    click_link('attack')
+    click_link('OK')
+
+    expect(page).to have_content('Peter has 90 hit points.')
   end
 end
 
@@ -44,7 +63,7 @@ feature 'switch turns' do
 
   scenario 'can display second players turn e.g. player 2' do
     sign_in_and_play
-    click_link('Hit player 2')
+    click_link('attack')
     click_link('OK')
 
     expect(page).not_to have_content("Peter's turn")
